@@ -43,10 +43,12 @@ const MongoStore = require('connect-mongo');
 //const dbUrl = process.env.DB_URL;
 const dbUrl = process.env.DB_URL || 'mongodb://db:27017/yelp-camp'; // プロパティのDB設定、無い場合は 'mongodb://db:27017/yelp-camp', 
 mongoose.connect(dbUrl,
-{   userNewUrlParser: true, 
-    useUnifiedTopology: true, 
-    useCreateIndex: true,
-    useFindAndModify: false})
+// {   useNewUrlParser: true, 
+//     useUnifiedTopology: true, 
+//     useCreateIndex: true,
+//     useFindAndModify: false})
+    {   useNewUrlParser: true,
+        useUnifiedTopology: true})
     .then(() => {
         console.log('MongoDBコネクションOK!!!')
     })
