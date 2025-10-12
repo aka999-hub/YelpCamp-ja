@@ -1,8 +1,8 @@
 // YelpCamp-ja/app.js
 
 // process.env.NODE_ENV：node.jsの環境変数
-if (process.env.NODE_ENV !== 'production') {    // production：本番用
-    // node.js が開発用で起動している場合は、dotenvの設定を使用する
+if (process.env.NODE_ENV !== 'production') {    // production：本番用 クラウドサービス使用時に環境変数に設定する
+    // node.js が開発用で起動している場合は、.envの設定を使用する
     require('dotenv').config();
 }
 // require('dotenv').config();
@@ -40,6 +40,7 @@ const reviewRoutes = require('./routes/reviews')
 const MongoStore = require('connect-mongo');
 
 // MongoDB接続
+console.log(`process.env.DB_URL=${process.env.DB_URL}`);
 //const dbUrl = process.env.DB_URL;
 const dbUrl = process.env.DB_URL || 'mongodb://db:27017/yelp-camp'; // プロパティのDB設定、無い場合は 'mongodb://db:27017/yelp-camp', 
 mongoose.connect(dbUrl,
@@ -48,7 +49,8 @@ mongoose.connect(dbUrl,
 //     useCreateIndex: true,
 //     useFindAndModify: false})
     {   useNewUrlParser: true,
-        useUnifiedTopology: true})
+        useUnifiedTopology: true
+    })
     .then(() => {
         console.log('MongoDBコネクションOK!!!')
     })
