@@ -1,8 +1,8 @@
 // YelpCamp-ja/app.js
 
-// process.env.NODE_ENV：node.jsの環境変数
+// .envファイルから環境変数を読み込む
 if (process.env.NODE_ENV !== 'production') {    // production：本番用 クラウドサービス使用時に環境変数に設定する
-    // node.js が開発用で起動している場合は、.envの設定を使用する
+    // NODE_ENVが'production'でない場合（開発環境など）にのみ、.envの設定を使用する
     require('dotenv').config();
 }
 // require('dotenv').config();
